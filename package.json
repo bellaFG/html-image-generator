@@ -1,0 +1,23 @@
+{
+  "name": "instagram-post-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server para geracao de posts Instagram com templates e Puppeteer",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "express": "^5.1.0",
+    "handlebars": "^4.7.8",
+    "puppeteer": "^24.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

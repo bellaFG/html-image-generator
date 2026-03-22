@@ -1,0 +1,45 @@
+{
+  "nome": "evento",
+  "nomeExibicao": "Post de Evento",
+  "descricao": "Template para divulgar eventos, workshops, lives, webinars ou encontros. Destaca data, horário e local com layout limpo.",
+  "formatos": ["feed", "story", "carrossel"],
+  "variaveis": {
+    "nome_evento": {
+      "tipo": "string",
+      "obrigatorio": true,
+      "descricao": "Nome do evento"
+    },
+    "data_evento": {
+      "tipo": "string",
+      "obrigatorio": true,
+      "descricao": "Data do evento (ex: '25 de Março')"
+    },
+    "horario": {
+      "tipo": "string",
+      "obrigatorio": false,
+      "descricao": "Horário do evento (ex: '19h', '14h às 17h')"
+    },
+    "local": {
+      "tipo": "string",
+      "obrigatorio": false,
+      "descricao": "Local do evento (ex: 'Online via Zoom', 'Auditório Central')"
+    },
+    "descricao": {
+      "tipo": "string",
+      "obrigatorio": false,
+      "descricao": "Descrição curta do evento"
+    },
+    "cta": {
+      "tipo": "string",
+      "obrigatorio": false,
+      "padrao": "INSCREVA-SE",
+      "descricao": "Texto do botão de ação"
+    },
+    "tipo_evento": {
+      "tipo": "string",
+      "obrigatorio": false,
+      "padrao": "EVENTO",
+      "descricao": "Tag do tipo (ex: 'WORKSHOP', 'LIVE', 'WEBINAR', 'MEETUP')"
+    }
+  }
+}
