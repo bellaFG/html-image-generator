@@ -95,10 +95,10 @@ Olhe o design e pergunte:
 ## 4. Padroes de Layout — Aprendidos de Referencias Reais
 
 ### Fonte: 18 referencias analisadas em 2026-03-22
-Inclui: posts da Maino, grid GJN Logistics, Azlogistika, Cargo Facil, Dinamica Transportadora, CS Designer, Eleks case study, IBIXPO grid, templates russos de apresentacao, perfil completo @mainotecnologia.
+Inclui: perfis de logistica, comex, design e tecnologia no Instagram.
 
 ### PADRAO A: Foto recortada + fundo colorido (MAIS COMUM em comex)
-**Visto em**: GJN Logistics grid, Azlogistika, Cargo Facil, Maino posts, Eleks
+**Visto em**: perfis de logistica e comex no Instagram
 - Foto real (porto, navio, container, aviao, caminhao) recortada com forma organica
 - Foto ocupa ~40-50% da area, com recorte diagonal, arredondado ou forma irregular
 - Fundo solido colorido (azul marinho, azul royal) na outra metade
@@ -122,9 +122,9 @@ Layout tipico:
 ```
 
 ### PADRAO B: Split horizontal — foto em cima, conteudo embaixo
-**Visto em**: Maino post 2 (nova regra), Dinamica Transportadora
+**Visto em**: posts de logistica e transportadoras
 - Foto real na metade superior (com ou sem overlay)
-- Divisao diagonal ou com faixa de cor (verde na Maino)
+- Divisao diagonal ou com faixa de cor
 - Metade inferior: fundo claro (branco, azul claro, gradiente suave)
 - Texto bold escuro (navy) centralizado
 - Destaque em cor diferente (laranja para numeros, verde para CTA)
@@ -142,11 +142,11 @@ Layout tipico:
 ```
 
 ### PADRAO C: Circulo grande como fundo + elementos flutuantes
-**Visto em**: Maino post 3 (planilha), CS Designer, post "guarda este post"
+**Visto em**: posts educativos e de design
 - Grande circulo/blob de cor como elemento dominante
 - Objetos/ilustracoes flutuando sobre o circulo
 - Texto bold abaixo ou sobre o circulo
-- Fundo pode ser escuro (Maino) ou claro (CS Designer)
+- Fundo pode ser escuro ou claro
 - As formas organicas (blobs) dao sensacao moderna
 
 ```
@@ -165,7 +165,7 @@ Layout tipico:
 ```
 
 ### PADRAO D: Foto pessoa + overlay de conteudo
-**Visto em**: Maino post 4 (preparacao e sistemica), IBIXPO, perfil @mainotecnologia
+**Visto em**: posts de autoridade e branding pessoal
 - Foto de pessoa (especialista, CEO, palestrante) como fundo ou lateral
 - Overlay escuro ou bloco de cor sobre/ao lado da foto
 - Texto como se fosse uma fala/citacao da pessoa
@@ -187,7 +187,7 @@ Layout tipico:
 ```
 
 ### PADRAO E: Full typographic — fundo solido, so texto
-**Visto em**: post "guarda este post", slides educativos, carrosseis
+**Visto em**: posts educativos, slides, carrosseis
 - Fundo solido (azul forte, navy, verde)
 - Icone grande relacionado ao tema (bookmark, alerta, check)
 - Texto ENORME ocupando a maior parte do espaco
@@ -211,7 +211,7 @@ Layout tipico:
 ```
 
 ### PADRAO F: Grid de dados / numeros de impacto
-**Visto em**: Eleks case study, IBIXPO "upcoming events"
+**Visto em**: case studies, eventos, infograficos
 - Numeros GIGANTES (5x, 230%, R$10.000)
 - Texto pequeno explicativo abaixo do numero
 - Lado a lado ou empilhado
@@ -281,31 +281,7 @@ Layout tipico:
 
 ---
 
-## 6. Identidade Visual da Maino (extraida dos posts reais)
-
-### Padroes observados no @mainotecnologia
-- **Fundo principal**: navy escuro (#0D1817, #121426) ou azul (#033860)
-- **Cor de destaque**: verde (#6ED161, #2A7221) — SEMPRE presente
-- **Barra verde no topo**: 5px, gradient horizontal — marca registrada
-- **Faixa verde lateral**: 7px esquerda, gradient vertical
-- **Logo**: estrela verde + "maino" em branco, topo centralizado ou topo-esquerdo
-- **Tipografia**: bold/black uppercase para titulos, italic pra destaque
-- **Fotos reais**: portos, containers, guindastes, navios — contexto comex
-- **Faixa diagonal verde**: separando foto de conteudo (post split)
-- **Post com pessoa**: CEO/especialista com citacao, passa autoridade
-- **Slide counter**: "X/Y" no canto do carrossel
-- **Cores de destaque secundario**: laranja (#F97316) pra numeros/dados, azul claro pra subtitulos
-
-### O que a Maino NAO faz
-- Nao usa formas abstratas sem significado
-- Nao usa elementos de UI (cards, buttons, pills)
-- Nao usa fundos totalmente lisos sem nenhum elemento visual
-- Nao usa mais de 3 cores por post
-- Nao coloca texto demais — sempre respiro
-
----
-
-## 7. Anti-patterns Aprendidos
+## 6. Anti-patterns Aprendidos
 
 ### Sessao 2026-03-22
 
@@ -325,17 +301,17 @@ Layout tipico:
 
 ---
 
-## 8. Padroes que Funcionaram
+## 7. Padroes que Funcionaram
 
 ### Post DUIMP v4 (foto de fundo) — aprovado
 - Foto real de porto (Unsplash) com gradient overlay
 - Texto bold grande na parte inferior
 - Hierarquia: kicker verde > titulo enorme > descricao suave > CTA texto
-- Elementos minimos: green strip, logo pequeno, foto + texto
+- Elementos minimos: color strip, logo pequeno, foto + texto
 - **Por que funcionou**: a foto JA comunica "comex/porto", o texto complementa
 - **Padrao**: A (foto recortada) + overlay
 
-### Post Maino v3 (circulo azul + ilustracoes) — parcialmente aprovado
+### Post circulo azul + ilustracoes — parcialmente aprovado
 - Grande circulo azul como fundo (padrao C)
 - Ilustracoes de documentos flutuando (relacionados ao tema)
 - Texto bold italic uppercase
@@ -343,7 +319,7 @@ Layout tipico:
 
 ---
 
-## 9. Regras de Ouro (resumo rapido)
+## 8. Regras de Ouro (resumo rapido)
 
 1. **Conceito antes de layout** — primeiro a metafora visual, depois o design
 2. **Texto ↔ Imagem** — todo visual reforça o texto, teste tampando o texto
@@ -357,13 +333,13 @@ Layout tipico:
 
 ---
 
-## 10. Como Crescer Este Arquivo
+## 9. Como Crescer Este Arquivo
 
 Apos cada conversa sobre design, adicionar:
 - Novos conceitos visuais por tema (secao 2)
 - Novos padroes de layout aprendidos de referencias (secao 4)
 - Novas tecnicas CSS (secao 5)
-- Novos anti-patterns aprendidos (secao 7)
-- Novos padroes que funcionaram (secao 8)
+- Novos anti-patterns aprendidos (secao 6)
+- Novos padroes que funcionaram (secao 7)
 
 **Regra**: so adicionar o que foi VALIDADO pelo usuario (feedback positivo ou negativo). Nao adicionar suposicoes.
