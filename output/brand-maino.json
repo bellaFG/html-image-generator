@@ -1,0 +1,175 @@
+{
+  "company": {
+    "name": "Maino",
+    "display_name": "mainô",
+    "industry": "comex",
+    "product_type": "saas_platform",
+    "tagline": "Tecnologia para Comercio Exterior",
+    "instagram": "@mainotecnologia",
+    "website": "https://www.maino.com.br",
+    "blog": "https://blog.maino.com.br",
+    "logo": {
+      "symbol": "green asterisk/star icon",
+      "wordmark": "mainô (lowercase, white on dark / dark on light)",
+      "placement": "top-left or top-center",
+      "min_margin": "40px"
+    }
+  },
+  "colors": {
+    "primary": "#033860",
+    "primary_light": "#1B6BC5",
+    "primary_dark": "#021D35",
+    "secondary": "#2A7221",
+    "secondary_light": "#6ED161",
+    "secondary_lighter": "#99DF90",
+    "secondary_pale": "#C4EDC0",
+    "secondary_bg": "#E2F6DF",
+    "accent": "#F97316",
+    "accent_light": "#FDBA74",
+    "background_dark": "#0D1817",
+    "background_navy": "#121426",
+    "background_light": "#F2F4F7",
+    "surface_dark": "rgba(37, 99, 235, 0.08)",
+    "surface_light": "#FFFFFF",
+    "text_on_dark": "#FFFFFF",
+    "text_on_light": "#1C1E21",
+    "text_muted_dark": "#94A3B8",
+    "text_muted_light": "#475569",
+    "text_accent_blue": "#93C5FD",
+    "blue_gradient": ["#D6EBFF", "#ADD6FF", "#85C2FF", "#5CADFF", "#1B6BC5", "#1C5B99", "#033860"],
+    "green_gradient": ["#E2F6DF", "#C4EDC0", "#99DF90", "#6ED161", "#41AE32", "#358E29", "#2A7221"]
+  },
+  "typography": {
+    "heading_font": "Inter",
+    "heading_weight": "800",
+    "body_font": "Inter",
+    "body_weight": "400",
+    "accent_font": "Poppins",
+    "accent_weight": "700",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap",
+    "scales": {
+      "headline_large": { "size": "58px", "weight": "800", "line_height": "1.08", "transform": "uppercase" },
+      "headline_medium": { "size": "44px", "weight": "800", "line_height": "1.12", "transform": "uppercase" },
+      "headline_small": { "size": "32px", "weight": "700", "line_height": "1.2" },
+      "subtitle": { "size": "23px", "weight": "500", "line_height": "1.4" },
+      "body": { "size": "18px", "weight": "400", "line_height": "1.5" },
+      "caption": { "size": "14px", "weight": "500", "line_height": "1.4" },
+      "tag": { "size": "13px", "weight": "700", "letter_spacing": "2px", "transform": "uppercase" }
+    }
+  },
+  "visual_patterns": {
+    "backgrounds": [
+      {
+        "name": "dark_navy",
+        "description": "Fundo escuro principal dos posts",
+        "css": "background: #0D1817;",
+        "usage": "Posts informativos, carrosseis educativos"
+      },
+      {
+        "name": "dark_blue",
+        "description": "Fundo azul escuro com profundidade",
+        "css": "background: #121426;",
+        "usage": "Posts de destaque, lancamentos"
+      },
+      {
+        "name": "blue_circle",
+        "description": "Circulo azul grande como elemento de fundo",
+        "css": "background: radial-gradient(circle at center, #1B6BC5 0%, #033860 60%, #0D1817 100%);",
+        "usage": "Posts de impacto, headlines fortes"
+      },
+      {
+        "name": "split_layout",
+        "description": "Foto no topo, conteudo claro embaixo",
+        "css_top": "background-image: url(...); background-size: cover;",
+        "css_bottom": "background: linear-gradient(180deg, #D6EBFF, #FFFFFF);",
+        "usage": "Posts explicativos, antes/depois"
+      }
+    ],
+    "accent_elements": [
+      {
+        "name": "green_bar_top",
+        "description": "Barra verde fina no topo do post",
+        "css": "height: 6px; background: linear-gradient(90deg, #2A7221, #6ED161);",
+        "usage": "Todos os posts - marca registrada visual"
+      },
+      {
+        "name": "green_side_strip",
+        "description": "Faixa verde vertical na lateral esquerda",
+        "css": "width: 8px; height: 100%; background: #6ED161; position: absolute; left: 0;",
+        "usage": "Posts de destaque, alertas"
+      },
+      {
+        "name": "green_cta_button",
+        "description": "Botao CTA verde com seta",
+        "css": "background: #2A7221; color: #FFFFFF; padding: 14px 28px; border-radius: 12px; font-weight: 700;",
+        "usage": "Call-to-action principal"
+      }
+    ],
+    "decorative": [
+      {
+        "name": "glow_blob",
+        "description": "Blob difuso de cor no fundo",
+        "css": "width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%); position: absolute;",
+        "usage": "Adicionar profundidade ao fundo escuro"
+      },
+      {
+        "name": "grid_lines",
+        "description": "Linhas sutis de grid no fundo",
+        "css": "opacity: 0.03; background: #FFFFFF;",
+        "usage": "Textura sutil em fundos escuros"
+      }
+    ],
+    "cards": {
+      "dark_card": {
+        "css": "background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 24px 28px;"
+      },
+      "highlight_card": {
+        "css": "background: rgba(106, 209, 97, 0.1); border: 1px solid rgba(106, 209, 97, 0.3); border-radius: 16px; padding: 24px 28px;"
+      },
+      "light_card": {
+        "css": "background: #FFFFFF; border-radius: 16px; padding: 24px 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);"
+      }
+    }
+  },
+  "layout_rules": {
+    "canvas": {
+      "feed": { "width": 1080, "height": 1080 },
+      "story": { "width": 1080, "height": 1920 },
+      "carousel": { "width": 1080, "height": 1080 }
+    },
+    "padding": {
+      "outer": "56px",
+      "inner": "28px",
+      "between_sections": "32px"
+    },
+    "common_structures": [
+      "accent_bar + header_tag + headline + cards + footer",
+      "accent_bar + photo_half + content_half_light",
+      "logo_top + circle_bg + bold_headline + illustration"
+    ]
+  },
+  "content_style": {
+    "headline_style": "Bold, direto, uppercase. Usa palavras de impacto. Fala com o importador.",
+    "tone": "Profissional mas acessivel. Autoridade em comex sem ser academico.",
+    "cta_examples": [
+      "Sua empresa esta preparada?",
+      "Fale com um especialista",
+      "Saiba mais",
+      "Veja como funciona"
+    ],
+    "source_line": "Fonte: Portal Unico Siscomex / Gov.br / Receita Federal",
+    "carousel_numbering": "Slide X/Y no canto superior direito"
+  },
+  "icon_style": {
+    "type": "stroke",
+    "stroke_width": "2.5",
+    "color_on_dark": "#FFFFFF",
+    "color_on_light": "#033860",
+    "size": "22-26px",
+    "container": {
+      "size": "44px",
+      "border_radius": "12px",
+      "backgrounds": ["#2A7221", "#1B6BC5", "#F97316", "#059669"]
+    }
+  }
+}

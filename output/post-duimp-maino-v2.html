@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .canvas {
+      width: 1080px;
+      height: 1080px;
+      background: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== TOP HALF: Photo with blue overlay ===== */
+    .photo-section {
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Simulated port/container photo using gradient layers */
+    .photo-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(3, 56, 96, 0.3) 0%,
+          rgba(3, 56, 96, 0.5) 60%,
+          rgba(3, 56, 96, 0.85) 100%
+        ),
+        linear-gradient(135deg,
+          #1B6BC5 0%, #033860 40%, #0D2E4A 70%, #1B6BC5 100%
+        );
+    }
+
+    /* Container shapes as abstract elements */
+    .container-shapes {
+      position: absolute;
+      inset: 0;
+    }
+
+    .ctn {
+      position: absolute;
+      border-radius: 4px;
+      opacity: 0.3;
+    }
+
+    .ctn-1 { width: 180px; height: 80px; background: #DC2626; top: 60px; left: 80px; transform: perspective(400px) rotateY(-8deg); opacity: 0.5; }
+    .ctn-2 { width: 160px; height: 70px; background: #2563EB; top: 50px; left: 280px; transform: perspective(400px) rotateY(-5deg); opacity: 0.35; }
+    .ctn-3 { width: 200px; height: 85px; background: #F59E0B; top: 150px; left: 140px; transform: perspective(400px) rotateY(-8deg); opacity: 0.25; }
+    .ctn-4 { width: 170px; height: 75px; background: #059669; top: 140px; left: 360px; transform: perspective(400px) rotateY(-5deg); opacity: 0.3; }
+    .ctn-5 { width: 190px; height: 80px; background: #1B6BC5; top: 80px; left: 500px; transform: perspective(400px) rotateY(-3deg); opacity: 0.2; }
+    .ctn-6 { width: 220px; height: 90px; background: #DC2626; top: 170px; left: 550px; opacity: 0.15; }
+    .ctn-7 { width: 160px; height: 70px; background: #2563EB; top: 260px; left: 100px; opacity: 0.15; }
+    .ctn-8 { width: 180px; height: 75px; background: #F97316; top: 250px; left: 320px; opacity: 0.12; }
+
+    /* Crane silhouette */
+    .crane {
+      position: absolute;
+      top: 20px;
+      right: 120px;
+      width: 4px;
+      height: 300px;
+      background: rgba(255,255,255,0.08);
+    }
+    .crane::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 200px;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+    }
+    .crane::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -80px;
+      width: 160px;
+      height: 3px;
+      background: rgba(255,255,255,0.04);
+      transform: rotate(-5deg);
+    }
+
+    /* Slide counter */
+    .slide-counter {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: rgba(0,0,0,0.45);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      z-index: 5;
+    }
+
+    /* Green diagonal accent between sections */
+    .green-divider {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      z-index: 3;
+    }
+
+    .green-divider::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 35%;
+      height: 100%;
+      background: #6ED161;
+      clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* ===== BOTTOM HALF: Light content area ===== */
+    .content-section {
+      flex: 1;
+      background: linear-gradient(180deg, #D6EBFF 0%, #E8F1FB 30%, #F0F6FF 100%);
+      padding: 48px 64px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .headline {
+      font-weight: 900;
+      font-size: 52px;
+      line-height: 1.05;
+      color: #033860;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1C5B99;
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.45;
+    }
+
+    /* Highlight card */
+    .highlight-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 32px 40px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(3, 56, 96, 0.08);
+      margin-bottom: 36px;
+      border: 1px solid rgba(3, 56, 96, 0.06);
+    }
+
+    .highlight-card p {
+      font-size: 22px;
+      font-weight: 500;
+      color: #1C5B99;
+      line-height: 1.5;
+    }
+
+    .highlight-card strong {
+      color: #033860;
+      font-weight: 800;
+    }
+
+    .highlight-card .orange {
+      color: #F97316;
+      font-weight: 800;
+    }
+
+    /* Info pills row */
+    .pills {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .pill {
+      background: #033860;
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill svg {
+      flex-shrink: 0;
+    }
+
+    /* Green CTA button */
+    .cta-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    .cta-button {
+      width: 52px;
+      height: 52px;
+      background: #2A7221;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Green side strip */
+    .side-strip {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(180deg, #6ED161 0%, #2A7221 100%);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="side-strip"></div>
+
+    <!-- TOP: Port/container photo area -->
+    <div class="photo-section">
+      <div class="photo-bg"></div>
+      <div class="container-shapes">
+        <div class="ctn ctn-1"></div>
+        <div class="ctn ctn-2"></div>
+        <div class="ctn ctn-3"></div>
+        <div class="ctn ctn-4"></div>
+        <div class="ctn ctn-5"></div>
+        <div class="ctn ctn-6"></div>
+        <div class="ctn ctn-7"></div>
+        <div class="ctn ctn-8"></div>
+      </div>
+      <div class="crane"></div>
+      <div class="slide-counter">1/4</div>
+      <div class="green-divider"></div>
+    </div>
+
+    <!-- BOTTOM: Content area -->
+    <div class="content-section">
+      <h1 class="headline">A DUIMP chegou.<br>E mudou tudo.</h1>
+      <p class="subtitle">A nova declaracao de importacao substitui<br>a DI e a DSI de forma definitiva.</p>
+
+      <div class="highlight-card">
+        <p>Com o <strong>despacho antecipado</strong>, sua carga<br>pode liberar ate <span class="orange">40% mais rapido</span><br>com o novo fluxo do Siscomex.</p>
+      </div>
+
+      <div class="pills">
+        <div class="pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ED161" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Documento unico
+        </div>
+        <div class="pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ED161" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Despacho antecipado
+        </div>
+        <div class="pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ED161" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Catalogo de produtos
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <div class="cta-button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

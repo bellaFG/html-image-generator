@@ -1,23 +1,13 @@
 {
-  "name": "instagram-post-mcp",
+  "name": "html-image-gen-skill",
   "version": "1.0.0",
-  "description": "MCP Server para geracao de posts Instagram com templates e Puppeteer",
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "start": "node build/index.js",
-    "dev": "tsc --watch"
+  "description": "Claude Code skill for generating production-quality images from HTML/CSS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellaFG/html-image-generator.git"
   },
+  "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0",
-    "express": "^5.1.0",
-    "handlebars": "^4.7.8",
-    "puppeteer": "^24.0.0",
-    "zod": "^3.23.0"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.0.0",
-    "typescript": "^5.7.0"
+    "puppeteer": "^24.0.0"
   }
 }
