@@ -1,0 +1,24 @@
+{
+  "name": "Post Foto + Texto Bold",
+  "description": "Layout classico de redes sociais: foto full-bleed com overlay gradiente e texto bold no terco inferior. Formula comprovada para alto engajamento.",
+  "format": "feed",
+  "dimensions": {
+    "width": 1080,
+    "height": 1080
+  },
+  "tags": ["institucional", "lancamento", "promocao", "generico"],
+  "style": "photo-overlay",
+  "layout": "foto-fullbleed-texto-inferior",
+  "placeholders": {
+    "TITULO": "Texto principal do post (max 6 palavras)",
+    "SUBTITULO": "Texto complementar (max 12 palavras)",
+    "FOTO_B64": "Foto em base64 (data:image/jpeg;base64,...)",
+    "COR_PRIMARIA": "Cor primaria da marca (hex)",
+    "COR_DESTAQUE": "Cor de destaque/accent (hex)",
+    "FONTE_TITULO": "Fonte do titulo (Google Fonts)",
+    "FONTE_CORPO": "Fonte do corpo (Google Fonts)",
+    "LOGO_B64": "Logo em base64 (opcional)",
+    "HANDLE": "@ da empresa (opcional)"
+  },
+  "notas": "Substituir os {{PLACEHOLDER}} no template.html pelos valores reais. Foto e obrigatoria — sem foto, use outro template."
+}

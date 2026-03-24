@@ -1,24 +1,30 @@
 # Gerador de Imagens HTML — Skill do Claude Code
 
-Uma skill do Claude Code que gera imagens PNG de alta qualidade a partir de HTML/CSS. Funciona com qualquer projeto — basta instalar e pedir ao Claude para criar imagens.
+Uma skill do Claude Code que transforma o Claude no **designer da sua empresa**. Gera imagens PNG de alta qualidade a partir de HTML/CSS, com consciencia de marca, aprendizado continuo e planejamento de conteudo.
 
-Suporta posts de Instagram, stories, banners, imagens OG, thumbnails do YouTube e qualquer formato visual que possa ser expresso como HTML.
+## O que faz
 
-## Funcionalidades
+O Claude atua como designer que **conhece sua marca** — na primeira interacao, pesquisa ativamente seu site/Instagram, sugere identidade visual e aprende com cada geracao. A partir dai, todas as imagens saem on-brand sem voce precisar repetir instrucoes.
+
+### Funcionalidades
 
 - **10 formatos pre-definidos**: feed, story, carousel, portrait, banner, twitter-post, og-image, youtube-thumb, square, landscape
 - **Renderizacao retina 2x** via Puppeteer headless browser
-- **Inteligencia de design integrada** (powered by UI/UX Pro Max): banco de dados pesquisavel com 161 paletas de cores, 57 combinacoes tipograficas, 50+ estilos visuais, 161 tipos de produto e 99 diretrizes de UX
-- **Gerador de design system**: recomenda automaticamente estilo, cores, tipografia e efeitos baseado no tipo de produto e industria
-- **Suporte a marca**: `brand.json` opcional para identidade visual consistente em todas as imagens
-- **Zero configuracao**: funciona direto da caixa com padroes sensiveis, sem configuracao necessaria
+- **Onboarding colaborativo**: pesquisa ativa no site/Instagram + conversa pra definir identidade visual
+- **Inteligencia de design integrada** (powered by UI/UX Pro Max): 161 paletas, 57 tipografias, 50+ estilos, 99 diretrizes UX
+- **Contexto persistente**: `brand.json` + `company.md` + memoria do Claude Code
+- **Campanhas**: series de posts com identidade visual coesa e variacao controlada
+- **Templates reutilizaveis**: salve posts aprovados como base para futuros
+- **Biblioteca de assets**: prioriza fotos proprias sobre stock
+- **Calendario brasileiro**: feriados nacionais, SP, RJ + 40 datas comerciais + meses tematicos
+- **Aprendizado continuo**: historico de geracoes, anti-patterns, sugestao de variacao
+- **Revisao de identidade**: alerta automatico quando e hora de revisar a marca
 
 ## Instalacao
 
 ### 1. Copie a skill para o seu projeto
 
 ```bash
-# A partir deste repo
 cp -r skill/ /caminho/do/seu-projeto/.claude/skills/html-image-gen/
 ```
 
@@ -37,58 +43,46 @@ cd /caminho/do/seu-projeto
 npm install puppeteer
 ```
 
-### 3. (Opcional) Crie um brand.json
-
-```json
-{
-  "company": {
-    "name": "Sua Empresa",
-    "logo": "assets/logo.png"
-  },
-  "colors": {
-    "primary": "#2563EB",
-    "secondary": "#1E40AF",
-    "accent": "#F59E0B",
-    "background": "#FFFFFF",
-    "text": "#1A1A2E",
-    "text_light": "#FFFFFF"
-  },
-  "typography": {
-    "heading_font": "Montserrat",
-    "heading_weight": "700",
-    "body_font": "Inter",
-    "body_weight": "400",
-    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;600&display=swap"
-  }
-}
-```
-
-### 4. Comece a usar
+### 3. Comece a usar
 
 Abra o Claude Code no seu projeto e peca:
 
 - "Gere um post de Instagram sobre o lancamento do nosso novo produto"
-- "Crie uma imagem OG para o blog post em /content/meu-post.md"
+- "Vamos configurar a identidade visual da empresa"
+- "Cria uma campanha de Black Friday com 5 posts"
 - "Faca uma thumbnail do YouTube com tema escuro"
-- "Design um banner do LinkedIn para a pagina da empresa"
+
+Na primeira vez, o Claude vai sugerir um onboarding pra conhecer sua marca. Leva uns 5 minutos e a partir dai tudo sai on-brand.
 
 ## Como Funciona
 
-1. O Claude le o SKILL.md e entende seu pedido
-2. Ele gera um arquivo HTML auto-contido com CSS inline e Google Fonts
-3. O HTML e renderizado em PNG via Puppeteer em resolucao 2x
-4. O Claude mostra a imagem e itera com base no seu feedback
+```
+Pedido do usuario
+  |
+  [1] Carregar contexto (brand.json + company.md + historico)
+  [2] Consultar conceitos visuais (design-learning.md)
+  [3] Verificar assets proprios → templates → design system
+  [4] Gerar HTML auto-contido
+  [5] Renderizar PNG via Puppeteer (2x retina)
+  [6] Mostrar, iterar, aprender
+```
+
+### Arquivos do projeto (gerados no onboarding)
+
+| Arquivo | O que contem |
+|---------|-------------|
+| `brand.json` | Cores, fontes, logo, estilo preferido, layouts |
+| `company.md` | Voz, tom, publico, pilares de conteudo, calendario |
+| `.image-gen/assets/` | Fotos proprias (equipe, produtos, escritorio) |
+| `.image-gen/templates/` | Templates pre-aprovados |
+| `.image-gen/campaigns/` | Campanhas ativas com regras visuais |
+| `.image-gen/history/` | Historico de geracoes (aprovacoes, rejeicoes, feedback) |
 
 ## Script de Renderizacao Standalone
 
-O script de renderizacao tambem pode ser usado diretamente:
-
 ```bash
-# Uso basico
-node .claude/skills/html-image-gen/scripts/render.js input.html output.png
-
 # Com formato pre-definido
-node .claude/skills/html-image-gen/scripts/render.js input.html output.png --format story
+node .claude/skills/html-image-gen/scripts/render.js input.html output.png --format feed
 
 # Dimensoes customizadas
 node .claude/skills/html-image-gen/scripts/render.js input.html output.png --width 1200 --height 630
@@ -114,21 +108,43 @@ cat template.html | node .claude/skills/html-image-gen/scripts/render.js --stdin
 
 ## Inteligencia de Design
 
-A skill inclui um banco de dados de design completo e pesquisavel:
+Banco de dados pesquisavel integrado:
 
 - **161 paletas de cores** por industria e tipo de produto
-- **57 combinacoes tipograficas** com URLs do Google Fonts e palavras-chave de humor
+- **57 combinacoes tipograficas** com URLs do Google Fonts
 - **50+ estilos visuais** com snippets CSS (glassmorphism, neubrutalism, aurora, etc.)
-- **161 padroes de tipo de produto** com recomendacoes de layout e CTA
-- **99 diretrizes de UX** cobrindo acessibilidade, touch targets, animacao, formularios
-- **Gerador de design system** que combina tudo acima em uma unica recomendacao
-
-Alem de diretrizes integradas para hierarquia visual, escalas tipograficas, espacamento, composicao e acessibilidade.
+- **161 padroes de tipo de produto** com recomendacoes de layout
+- **99 diretrizes de UX** (acessibilidade, touch targets, animacao, formularios)
+- **Gerador de design system** que combina tudo em uma unica recomendacao
 
 ### Pre-requisitos
 
 - Node.js (para renderizacao via Puppeteer)
-- Python 3 (para buscas de inteligencia de design — sem dependencias externas)
+- Python 3 (para buscas de design — sem dependencias externas)
+
+## Estrutura da Skill
+
+```
+skill/
+  SKILL.md                    # Entrada principal
+  docs/
+    design-guidelines.md      # Hierarquia, tipografia, cores, estilos, acessibilidade
+    social-media-rules.md     # Design grafico para redes sociais (CRITICO)
+    workflow.md               # Fluxo de 11 passos + campanhas + revisao
+    onboarding-guide.md       # Roteiro do onboarding colaborativo
+  scripts/
+    render.js                 # HTML → PNG via Puppeteer
+    search.py                 # CLI de busca BM25
+    core.py                   # Motor BM25 + configs CSV
+    design_system.py          # Gerador de design system
+    context.py                # Consolida contexto da empresa
+  data/
+    design-learning.md        # Conceitos visuais, metaforas, anti-patterns
+    calendario-brasil.md      # Feriados + datas comerciais (BR, SP, RJ)
+    *.csv                     # Banco de dados de design
+  templates/
+    _exemplo/                 # Template de referencia
+```
 
 Veja [skill/SKILL.md](skill/SKILL.md) para a referencia completa.
 

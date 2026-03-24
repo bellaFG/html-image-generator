@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family={{FONTE_TITULO}}:wght@800;900&family={{FONTE_CORPO}}:wght@400;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .canvas {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Foto full-bleed */
+    .photo {
+      position: absolute;
+      inset: 0;
+      background: url('{{FOTO_B64}}') center 35% / cover no-repeat;
+    }
+
+    /* Overlay gradiente — foto visivel em cima, escuro embaixo pro texto */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.10) 0%,
+        rgba(0, 0, 0, 0.08) 25%,
+        rgba(0, 0, 0, 0.50) 48%,
+        rgba(0, 0, 0, 0.85) 65%,
+        rgba(0, 0, 0, 0.95) 80%,
+        rgba(0, 0, 0, 1) 100%
+      );
+    }
+
+    /* Textura de ruido para calor analogico */
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* Conteudo no terco inferior */
+    .content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 60px 56px 56px;
+      z-index: 2;
+    }
+
+    /* Barra de destaque da marca */
+    .accent-bar {
+      width: 48px;
+      height: 5px;
+      background: {{COR_DESTAQUE}};
+      margin-bottom: 24px;
+      border-radius: 3px;
+    }
+
+    .titulo {
+      font-family: '{{FONTE_TITULO}}', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1.05;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .subtitulo {
+      font-family: '{{FONTE_CORPO}}', sans-serif;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Logo e handle no topo */
+    .header {
+      position: absolute;
+      top: 40px;
+      left: 56px;
+      right: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .logo {
+      height: 36px;
+      opacity: 0.9;
+    }
+
+    .handle {
+      font-family: '{{FONTE_CORPO}}', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="photo"></div>
+    <div class="overlay"></div>
+    <div class="noise"></div>
+
+    <div class="header">
+      <!-- <img class="logo" src="{{LOGO_B64}}" alt="logo"> -->
+      <span class="handle">{{HANDLE}}</span>
+    </div>
+
+    <div class="content">
+      <div class="accent-bar"></div>
+      <h1 class="titulo">{{TITULO}}</h1>
+      <p class="subtitulo">{{SUBTITULO}}</p>
+    </div>
+  </div>
+</body>
+</html>
