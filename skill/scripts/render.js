@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 /**
- * HTML Image Generator — Standalone renderer
+ * Gerador de Imagens HTML — Renderizador standalone
  *
- * Renders an HTML file (or stdin) to PNG using Puppeteer.
+ * Renderiza um arquivo HTML (ou stdin) para PNG usando Puppeteer.
  *
- * Usage:
+ * Uso:
  *   node render.js <input.html> [output.png] [--width 1080] [--height 1080] [--scale 2]
  *   cat template.html | node render.js --stdin -o output.png
  *
- * Options:
- *   --width   Viewport width in pixels (default: 1080)
- *   --height  Viewport height in pixels (default: 1080)
- *   --scale   Device scale factor for retina output (default: 2)
- *   --stdin   Read HTML from stdin instead of a file
- *   -o        Output file path (alternative to positional arg)
- *   --format  feed (1080x1080), story (1080x1920), or custom (default: custom)
+ * Opcoes:
+ *   --width   Largura do viewport em pixels (padrao: 1080)
+ *   --height  Altura do viewport em pixels (padrao: 1080)
+ *   --scale   Fator de escala para output retina (padrao: 2)
+ *   --stdin   Ler HTML do stdin ao inves de arquivo
+ *   -o        Caminho do arquivo de saida (alternativa ao arg posicional)
+ *   --format  feed (1080x1080), story (1080x1920), ou custom (padrao: custom)
  */
 
 const puppeteer = require("puppeteer");
@@ -45,7 +45,7 @@ function parseArgs(argv) {
     format: null,
   };
 
-  let i = 2; // skip node and script path
+  let i = 2; // pular node e caminho do script
   while (i < argv.length) {
     const arg = argv[i];
     if (arg === "--width" && argv[i + 1]) {
@@ -68,13 +68,13 @@ function parseArgs(argv) {
     i++;
   }
 
-  // Apply format presets
+  // Aplicar presets de formato
   if (args.format && FORMATS[args.format]) {
     if (!args.width) args.width = FORMATS[args.format].width;
     if (!args.height) args.height = FORMATS[args.format].height;
   }
 
-  // Defaults
+  // Valores padrao
   if (!args.width) args.width = 1080;
   if (!args.height) args.height = 1080;
   if (!args.output) {
@@ -114,10 +114,10 @@ async function render(html, outputPath, width, height, scale) {
       deviceScaleFactor: scale,
     });
 
-    // If HTML references local files, set base URL to the input file's directory
+    // Se o HTML referencia arquivos locais, definir URL base do diretorio do arquivo
     await page.setContent(html, { waitUntil: "networkidle0" });
 
-    // Wait for web fonts to load
+    // Aguardar carregamento das web fonts
     await page.evaluateHandle("document.fonts.ready");
 
     const screenshot = await page.screenshot({
@@ -125,7 +125,7 @@ async function render(html, outputPath, width, height, scale) {
       clip: { x: 0, y: 0, width, height },
     });
 
-    // Ensure output directory exists
+    // Garantir que o diretorio de saida existe
     const outputDir = path.dirname(path.resolve(outputPath));
     fs.mkdirSync(outputDir, { recursive: true });
 
@@ -155,15 +155,15 @@ async function main() {
     html = await readStdin();
   } else if (args.input) {
     if (!fs.existsSync(args.input)) {
-      console.error(JSON.stringify({ status: "error", message: `File not found: ${args.input}` }));
+      console.error(JSON.stringify({ status: "erro", message: `Arquivo nao encontrado: ${args.input}` }));
       process.exit(1);
     }
     html = fs.readFileSync(args.input, "utf-8");
   } else {
     console.error(
       JSON.stringify({
-        status: "error",
-        message: "Usage: node render.js <input.html> [output.png] [--width 1080] [--height 1080] [--scale 2] [--format feed|story|banner]",
+        status: "erro",
+        message: "Uso: node render.js <input.html> [output.png] [--width 1080] [--height 1080] [--scale 2] [--format feed|story|banner]",
         formats: Object.keys(FORMATS),
       })
     );
@@ -174,6 +174,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error(JSON.stringify({ status: "error", message: err.message }));
+  console.error(JSON.stringify({ status: "erro", message: err.message }));
   process.exit(1);
 });

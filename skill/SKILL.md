@@ -1,76 +1,76 @@
-# HTML Image Generator
+# Gerador de Imagens HTML
 
-Generate production-quality images (PNG) from HTML/CSS. Supports social media posts, banners, OG images, thumbnails, and any visual asset that can be expressed as HTML.
+Gera imagens de alta qualidade (PNG) a partir de HTML/CSS. Suporta posts de redes sociais, banners, imagens OG, thumbnails e qualquer recurso visual que possa ser expresso como HTML.
 
-Includes an integrated design intelligence database (powered by UI/UX Pro Max) with 161 color palettes, 57 font pairings, 50+ visual styles, 161 product types, and 99 UX guidelines — all searchable via Python scripts.
+Inclui um banco de dados de inteligencia de design integrado (powered by UI/UX Pro Max) com 161 paletas de cores, 57 combinacoes tipograficas, 50+ estilos visuais, 161 tipos de produto e 99 diretrizes de UX — todos pesquisaveis via scripts Python.
 
-## When to Apply
+## Quando Aplicar
 
-### Must Use
+### Deve Usar
 
-- User asks to **generate an image**, post, banner, thumbnail, or visual asset
-- User asks to **create social media content** (Instagram, Twitter/X, LinkedIn, YouTube)
-- User asks to **design** a card, flyer, badge, certificate, or infographic
-- User asks to create **OG images** or open graph previews
-- User wants to **convert HTML to PNG/image**
+- Usuario pede para **gerar uma imagem**, post, banner, thumbnail ou recurso visual
+- Usuario pede para **criar conteudo de redes sociais** (Instagram, Twitter/X, LinkedIn, YouTube)
+- Usuario pede para **criar** um card, flyer, badge, certificado ou infografico
+- Usuario pede para criar **imagens OG** ou previews open graph
+- Usuario quer **converter HTML para PNG/imagem**
 
-### Skip
+### Pular
 
-- User wants to edit an existing raster image (photo editing)
-- User needs SVG-only output without rasterization
-- Task is pure UI development (web pages, apps) — not image generation
+- Usuario quer editar uma imagem raster existente (edicao de fotos)
+- Usuario precisa de output apenas SVG sem rasterizacao
+- Tarefa e desenvolvimento de UI puro (paginas web, apps) — nao geracao de imagem
 
-## How It Works
+## Como Funciona
 
-1. You write an HTML file with inline CSS (self-contained, single file)
-2. The render script opens it in a headless browser and screenshots it
-3. Output is a high-resolution PNG at 2x scale
+1. Voce escreve um arquivo HTML com CSS inline (auto-contido, arquivo unico)
+2. O script de renderizacao abre no navegador headless e tira screenshot
+3. Output e um PNG de alta resolucao em escala 2x
 
-## Render Script
+## Script de Renderizacao
 
-The render script is at `scripts/render.js` relative to this skill. It requires `puppeteer` to be installed in the project.
+O script de renderizacao esta em `scripts/render.js` relativo a esta skill. Requer `puppeteer` instalado no projeto.
 
 ```bash
-# Render an HTML file to PNG
+# Renderizar um arquivo HTML para PNG
 node <skill-path>/scripts/render.js input.html output.png --format feed
 
-# With custom dimensions
+# Com dimensoes customizadas
 node <skill-path>/scripts/render.js input.html output.png --width 1200 --height 630
 
-# From stdin
+# Via stdin
 cat template.html | node <skill-path>/scripts/render.js --stdin -o output.png --format story
 ```
 
-### Available Formats
+### Formatos Disponiveis
 
-| Format         | Dimensions   | Use Case                          |
+| Formato         | Dimensoes    | Uso                               |
 |----------------|--------------|-----------------------------------|
-| `feed`         | 1080 x 1080  | Instagram/Facebook square posts   |
-| `story`        | 1080 x 1920  | Instagram/Facebook stories, Reels |
-| `carousel`     | 1080 x 1080  | Instagram carousel slides         |
-| `portrait`     | 1080 x 1350  | Instagram portrait posts          |
-| `banner`       | 1200 x 628   | Facebook/LinkedIn banners         |
-| `twitter-post` | 1200 x 675   | Twitter/X posts                   |
-| `og-image`     | 1200 x 630   | Open Graph preview images         |
-| `youtube-thumb` | 1280 x 720  | YouTube thumbnails                |
-| `square`       | 1080 x 1080  | General square format             |
-| `landscape`    | 1920 x 1080  | Landscape/presentation format     |
+| `feed`         | 1080 x 1080  | Posts quadrados Instagram/Facebook |
+| `story`        | 1080 x 1920  | Stories/Reels Instagram/Facebook  |
+| `carousel`     | 1080 x 1080  | Slides de carrossel Instagram     |
+| `portrait`     | 1080 x 1350  | Posts retrato Instagram           |
+| `banner`       | 1200 x 628   | Banners Facebook/LinkedIn         |
+| `twitter-post` | 1200 x 675   | Posts Twitter/X                   |
+| `og-image`     | 1200 x 630   | Imagens Open Graph                |
+| `youtube-thumb` | 1280 x 720  | Thumbnails YouTube                |
+| `square`       | 1080 x 1080  | Formato quadrado geral            |
+| `landscape`    | 1920 x 1080  | Formato paisagem/apresentacao     |
 
-All rendered at 2x scale by default (e.g., feed = 2160x2160px actual).
+Todos renderizados em escala 2x por padrao (ex: feed = 2160x2160px real).
 
 ## Setup
 
-The project needs `puppeteer` installed:
+O projeto precisa do `puppeteer` instalado:
 
 ```bash
 npm install puppeteer
-# or
+# ou
 yarn add puppeteer
 ```
 
-## HTML Template Structure
+## Estrutura do Template HTML
 
-Always use this base structure for generated images:
+Sempre use esta estrutura base para imagens geradas:
 
 ```html
 <!DOCTYPE html>
@@ -83,8 +83,8 @@ Always use this base structure for generated images:
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     .canvas {
-      width: {WIDTH}px;
-      height: {HEIGHT}px;
+      width: {LARGURA}px;
+      height: {ALTURA}px;
       /* background, font-family, etc */
       display: flex;
       flex-direction: column;
@@ -97,27 +97,27 @@ Always use this base structure for generated images:
 </head>
 <body>
   <div class="canvas">
-    <!-- content here -->
+    <!-- conteudo aqui -->
   </div>
 </body>
 </html>
 ```
 
-Key rules:
-- **Self-contained**: all CSS inline, fonts via Google Fonts `@import`
-- **Fixed dimensions**: `.canvas` must have explicit `width` and `height` in px
-- **Real photos**: download from Unsplash, convert to base64, embed as `data:image/jpeg;base64,...` in CSS `background`
-- **Use `file://` paths** only for local images the user provides
-- **Design like a graphic designer**, not a web developer — see Section 5
+Regras principais:
+- **Auto-contido**: todo CSS inline, fontes via Google Fonts `@import`
+- **Dimensoes fixas**: `.canvas` deve ter `width` e `height` explicitos em px
+- **Fotos reais**: baixar do Unsplash, converter para base64, embutir como `data:image/jpeg;base64,...` no CSS `background`
+- **Use caminhos `file://`** apenas para imagens locais que o usuario fornece
+- **Pense como designer grafico**, nao como desenvolvedor web — veja Secao 5
 
-## Brand Configuration (Optional)
+## Configuracao de Marca (Opcional)
 
-If the project has a `brand.json` in its root, read it before generating images to respect the brand identity. Expected structure:
+Se o projeto tiver um `brand.json` na raiz, leia-o antes de gerar imagens para respeitar a identidade visual. Estrutura esperada:
 
 ```json
 {
   "company": {
-    "name": "Company Name",
+    "name": "Nome da Empresa",
     "logo": "assets/logo.png"
   },
   "colors": {
@@ -143,83 +143,83 @@ If the project has a `brand.json` in its root, read it before generating images 
 }
 ```
 
-If no `brand.json` exists, ask the user for color preferences or use a professional default palette.
+Se nao existir `brand.json`, pergunte ao usuario sobre preferencias de cores ou use uma paleta profissional padrao.
 
 ---
 
-## Design Guidelines
+## Diretrizes de Design
 
-### 1. Visual Hierarchy (CRITICAL)
+### 1. Hierarquia Visual (CRITICO)
 
-Every image must have a clear focal point and maximum 3 levels of hierarchy.
+Toda imagem deve ter um ponto focal claro e no maximo 3 niveis de hierarquia.
 
-**Type scale by format:**
+**Escala tipografica por formato:**
 
-| Element   | Feed/Square (1080px) | Story (1080px wide) | Banner (1200px) |
-|-----------|----------------------|---------------------|-----------------|
-| Heading   | 56 - 80px            | 64 - 96px           | 48 - 72px       |
-| Subhead   | 28 - 36px            | 32 - 42px           | 24 - 32px       |
-| Body      | 22 - 28px            | 24 - 32px           | 18 - 24px       |
-| CTA       | 20 - 26px            | 22 - 28px           | 18 - 22px       |
-| Caption   | 16 - 20px            | 18 - 22px           | 14 - 18px       |
+| Elemento  | Feed/Square (1080px) | Story (1080px larg.) | Banner (1200px) |
+|-----------|----------------------|----------------------|-----------------|
+| Titulo    | 56 - 80px            | 64 - 96px            | 48 - 72px       |
+| Subtitulo | 28 - 36px            | 32 - 42px            | 24 - 32px       |
+| Corpo     | 22 - 28px            | 24 - 32px            | 18 - 24px       |
+| CTA       | 20 - 26px            | 22 - 28px            | 18 - 22px       |
+| Legenda   | 16 - 20px            | 18 - 22px            | 14 - 18px       |
 
-**Rules:**
-- Heading must be at least **2x larger** than body text
-- Maximum **2 fonts** per image (1 heading + 1 body)
-- Heading weight: **700 - 900** (bold/black)
-- Body weight: **400 - 500** (regular/medium)
-- Line-height: **1.0 - 1.15** for headings, **1.4 - 1.6** for body
-- Max characters per line: **20 - 25** for headings, **35 - 45** for body
-- Max total words: **40 - 50** for feed, **20 - 30** for stories
+**Regras:**
+- Titulo deve ser pelo menos **2x maior** que o texto corpo
+- Maximo **2 fontes** por imagem (1 titulo + 1 corpo)
+- Peso do titulo: **700 - 900** (bold/black)
+- Peso do corpo: **400 - 500** (regular/medium)
+- Line-height: **1.0 - 1.15** para titulos, **1.4 - 1.6** para corpo
+- Max caracteres por linha: **20 - 25** para titulos, **35 - 45** para corpo
+- Max palavras total: **40 - 50** para feed, **20 - 30** para stories
 
-**Anti-patterns (NEVER do):**
-- Text smaller than 20px (illegible on mobile)
-- More than 3 different font sizes
-- Text touching the edges (no breathing room)
-- Heading and subheading with similar sizes (no hierarchy)
+**Anti-patterns (NUNCA faca):**
+- Texto menor que 20px (ilegivel no celular)
+- Mais de 3 tamanhos de fonte diferentes
+- Texto tocando as bordas (sem respiro)
+- Titulo e subtitulo com tamanhos parecidos (sem hierarquia)
 
-### 2. Typography Pairings
+### 2. Combinacoes Tipograficas
 
-Recommended Google Fonts combinations:
+Combinacoes recomendadas do Google Fonts:
 
-| Name                | Heading          | Body           | Style                        | Best For                         |
+| Nome                | Titulo           | Corpo          | Estilo                       | Melhor Para                      |
 |---------------------|------------------|----------------|------------------------------|----------------------------------|
-| Bold Statement      | Bebas Neue       | Source Sans 3  | Impactful, dramatic          | Marketing, promos, events        |
-| Startup Bold        | Outfit           | Rubik          | Modern, confident            | Startups, launches, tech         |
-| Geometric Modern    | Outfit           | Work Sans      | Clean, balanced              | General purpose, agencies        |
-| Modern Professional | Poppins          | Open Sans      | Professional, friendly       | SaaS, corporate, services        |
-| Tech Startup        | Space Grotesk    | DM Sans        | Futuristic, innovative       | Tech, AI, dev tools              |
-| Neubrutalist Bold   | Lexend Mega      | Public Sans    | Bold, geometric              | Gen Z, bold marketing            |
-| Elegant Serif       | Playfair Display | Lato           | Sophisticated, classic       | Luxury, fashion, food            |
-| Loud Impact         | Anton            | Epilogue       | Brutal, loud                 | Viral campaigns, streetwear      |
-| Clean Corporate     | Montserrat       | Inter          | Versatile, professional      | Any brand, presentations         |
-| Editorial           | DM Serif Display | DM Sans        | Editorial, refined           | Magazines, blogs, content        |
+| Bold Statement      | Bebas Neue       | Source Sans 3  | Impactante, dramatico        | Marketing, promos, eventos       |
+| Startup Bold        | Outfit           | Rubik          | Moderno, confiante           | Startups, lancamentos, tech      |
+| Geometric Modern    | Outfit           | Work Sans      | Limpo, equilibrado           | Uso geral, agencias              |
+| Modern Professional | Poppins          | Open Sans      | Profissional, amigavel       | SaaS, corporativo, servicos      |
+| Tech Startup        | Space Grotesk    | DM Sans        | Futurista, inovador          | Tech, IA, dev tools              |
+| Neubrutalist Bold   | Lexend Mega      | Public Sans    | Bold, geometrico             | Gen Z, marketing ousado          |
+| Elegant Serif       | Playfair Display | Lato           | Sofisticado, classico        | Luxo, moda, gastronomia          |
+| Loud Impact         | Anton            | Epilogue       | Brutal, alto                 | Campanhas virais, streetwear     |
+| Clean Corporate     | Montserrat       | Inter          | Versatil, profissional       | Qualquer marca, apresentacoes    |
+| Editorial           | DM Serif Display | DM Sans        | Editorial, refinado          | Revistas, blogs, conteudo        |
 
-### 3. Color Palettes by Industry
+### 3. Paletas de Cores por Industria
 
-| Industry            | Primary   | Secondary | Accent    | Background | Text      |
+| Industria           | Primaria  | Secundaria | Destaque  | Fundo      | Texto     |
 |---------------------|-----------|-----------|-----------|------------|-----------|
 | Tech / SaaS         | #2563EB   | #3B82F6   | #8B5CF6   | #EFF6FF    | #1E3A5F   |
-| Marketing / Agency  | #EC4899   | #F472B6   | #06B6D4   | #FDF2F8    | #831843   |
-| Social Media        | #E11D48   | #FB7185   | #2563EB   | #FFF1F2    | #881337   |
+| Marketing / Agencia | #EC4899   | #F472B6   | #06B6D4   | #FDF2F8    | #831843   |
+| Redes Sociais       | #E11D48   | #FB7185   | #2563EB   | #FFF1F2    | #881337   |
 | E-commerce          | #DC2626   | #F59E0B   | #16A34A   | #FFFBEB    | #78350F   |
-| Healthcare          | #059669   | #34D399   | #0891B2   | #ECFDF5    | #064E3B   |
-| Education           | #7C3AED   | #A78BFA   | #F59E0B   | #F5F3FF    | #4C1D95   |
-| Food / Restaurant   | #EA580C   | #F97316   | #DC2626   | #FFF7ED    | #7C2D12   |
-| Finance             | #1E40AF   | #3B82F6   | #059669   | #EFF6FF    | #1E3A5F   |
-| Fashion / Luxury    | #18181B   | #71717A   | #D4AF37   | #FAFAFA    | #18181B   |
-| Fitness / Sports    | #0F172A   | #334155   | #EF4444   | #F8FAFC    | #0F172A   |
-| Real Estate         | #14532D   | #166534   | #CA8A04   | #F0FDF4    | #14532D   |
-| Creative / Art      | #7C3AED   | #EC4899   | #F59E0B   | #FAF5FF    | #3B0764   |
+| Saude               | #059669   | #34D399   | #0891B2   | #ECFDF5    | #064E3B   |
+| Educacao            | #7C3AED   | #A78BFA   | #F59E0B   | #F5F3FF    | #4C1D95   |
+| Gastronomia         | #EA580C   | #F97316   | #DC2626   | #FFF7ED    | #7C2D12   |
+| Financas            | #1E40AF   | #3B82F6   | #059669   | #EFF6FF    | #1E3A5F   |
+| Moda / Luxo         | #18181B   | #71717A   | #D4AF37   | #FAFAFA    | #18181B   |
+| Fitness / Esportes  | #0F172A   | #334155   | #EF4444   | #F8FAFC    | #0F172A   |
+| Imobiliario         | #14532D   | #166534   | #CA8A04   | #F0FDF4    | #14532D   |
+| Criativo / Arte     | #7C3AED   | #EC4899   | #F59E0B   | #FAF5FF    | #3B0764   |
 
-**Color rules:**
-- Contrast ratio: minimum **4.5:1** between text and background (WCAG AA)
-- Maximum **3 - 4 colors** per image
-- CTA must use a **different color** from everything else
-- Dark backgrounds: use white text (#FFFFFF), minimum opacity 0.9
-- Never: gray on gray, neon on white, red on green
+**Regras de cores:**
+- Contraste: minimo **4.5:1** entre texto e fundo (WCAG AA)
+- Maximo **3 - 4 cores** por imagem
+- CTA deve usar uma **cor diferente** de todo o resto
+- Fundos escuros: use texto branco (#FFFFFF), opacidade minima 0.9
+- Nunca: cinza sobre cinza, neon sobre branco, vermelho sobre verde
 
-### 4. Visual Styles
+### 4. Estilos Visuais
 
 #### Glassmorphism
 ```css
@@ -228,72 +228,72 @@ background: rgba(255, 255, 255, 0.15);
 border: 1px solid rgba(255, 255, 255, 0.2);
 border-radius: 20px;
 ```
-Best for: modern, premium, tech. Requires a vibrant background behind the glass.
+Melhor para: moderno, premium, tech. Requer um fundo vibrante atras do vidro.
 
-#### Minimalism
-Black + white + 1 accent color only. Large type, extreme whitespace.
-Best for: luxury, editorial, corporate.
+#### Minimalismo
+Preto + branco + 1 cor de destaque apenas. Tipografia grande, whitespace extremo.
+Melhor para: luxo, editorial, corporativo.
 
-#### Vibrant Blocks
-Bold geometric shapes, neon colors, 32px+ type, high contrast.
-Best for: social media, startups, youth brands.
+#### Blocos Vibrantes
+Formas geometricas ousadas, cores neon, tipografia 32px+, alto contraste.
+Melhor para: redes sociais, startups, marcas jovens.
 
-#### Aurora / Gradient
-Mesh gradients with 2-3 complementary colors, smooth transitions.
-Best for: SaaS, creative agencies, music.
+#### Aurora / Gradiente
+Gradientes mesh com 2-3 cores complementares, transicoes suaves.
+Melhor para: SaaS, agencias criativas, musica.
 
 #### Dark Mode
-Background #000000 or #121212, white text, neon accents.
-Best for: tech, entertainment, gaming.
+Fundo #000000 ou #121212, texto branco, destaques neon.
+Melhor para: tech, entretenimento, gaming.
 
 #### Neubrutalism
-Thick borders (3-4px), solid offset shadows, primary colors, no border-radius.
+Bordas grossas (3-4px), sombras solidas deslocadas, cores primarias, sem border-radius.
 ```css
 border: 3px solid #000;
 box-shadow: 6px 6px 0 #000;
 border-radius: 0;
 ```
-Best for: Gen Z, disruptive brands, bold marketing.
+Melhor para: Gen Z, marcas disruptivas, marketing ousado.
 
-### 5. Social Media Design (CRITICAL — READ THIS FIRST)
+### 5. Design para Redes Sociais (CRITICO — LEIA PRIMEIRO)
 
-**This is NOT web design. This is graphic design for social media.**
+**Isto NAO e web design. Isto e design grafico para redes sociais.**
 
-Social media posts must look like they were made in Canva or by a graphic designer — NOT like a website, landing page, or app UI. The biggest mistake is making posts that look like screenshots of a web page.
+Posts de redes sociais devem parecer feitos no Canva ou por um designer grafico — NAO como um site, landing page ou UI de app. O maior erro e fazer posts que parecem screenshots de uma pagina web.
 
-#### What WORKS (do this):
+#### O que FUNCIONA (faca isto):
 
-- **Full-bleed photography** as background with gradient overlay for text readability
-- **Text IS the design** — huge bold typography filling the space, not small text in boxes
-- **Minimal elements** — photo + text + logo. That's it. Maximum impact.
-- **Real photos** from Unsplash (download, convert to base64, embed inline). Always prefer real photography over abstract shapes
-- **Gradient overlays** on photos: darker at the bottom where text goes, transparent at top where the photo breathes
-- **Bold uppercase headlines** — 64-82px, weight 800-900, filling the width
-- **Accent colors as text highlights**, not as backgrounds for boxes
-- **Subtle brand elements**: thin accent bars, side strips, small logo — never dominating
-- **Grain/noise texture** overlay for warmth and analog feel
+- **Fotografia full-bleed** como fundo com overlay de gradiente para legibilidade do texto
+- **Texto E o design** — tipografia bold enorme preenchendo o espaco, nao texto pequeno em caixas
+- **Elementos minimos** — foto + texto + logo. So isso. Maximo impacto.
+- **Fotos reais** do Unsplash (baixar, converter para base64, embutir inline). Sempre prefira fotografia real a formas abstratas
+- **Overlays de gradiente** nas fotos: mais escuro embaixo onde o texto vai, transparente em cima onde a foto respira
+- **Titulos bold uppercase** — 64-82px, peso 800-900, preenchendo a largura
+- **Cores de destaque como realce de texto**, nao como fundo de caixas
+- **Elementos de marca sutis**: barras finas de destaque, faixas laterais, logo pequeno — nunca dominando
+- **Textura de granulado/ruido** como overlay para calor e sensacao analogica
 
-#### What DOES NOT work (never do this):
+#### O que NAO funciona (nunca faca isto):
 
-- **Cards with borders** — this is a website component, not social media design
-- **Pills/tags that look like buttons** — text labels yes, clickable-looking elements NO
-- **Grid layouts** — posts are not dashboards
-- **Multiple small boxes/containers** — this screams "landing page"
-- **CTA buttons** — there are no buttons on Instagram. Use simple text with an arrow (→) at most
-- **Info cards with icons** — this is a features section on a SaaS website
-- **Timeline/stepper components** — UI pattern, not design pattern
-- **Anything that looks interactive** — social media images are static, don't fake UI
+- **Cards com bordas** — isto e um componente de site, nao design de redes sociais
+- **Pills/tags que parecem botoes** — labels de texto sim, elementos clicaveis NAO
+- **Layouts de grid** — posts nao sao dashboards
+- **Multiplas caixas/containers pequenos** — isto grita "landing page"
+- **Botoes de CTA** — nao existem botoes no Instagram. Use texto simples com seta (→) no maximo
+- **Cards de info com icones** — isto e uma secao de features de um site SaaS
+- **Componentes de timeline/stepper** — padrao de UI, nao padrao de design
+- **Qualquer coisa que pareca interativa** — imagens de redes sociais sao estaticas, nao finja UI
 
-#### Photo Background Technique:
+#### Tecnica de Foto de Fundo:
 
 ```bash
-# 1. Download photo from Unsplash
+# 1. Baixar foto do Unsplash
 curl -sL "https://images.unsplash.com/photo-{ID}?w=1100&q=80" -o /tmp/photo.jpg
 
-# 2. Convert to base64
+# 2. Converter para base64
 base64 -w0 /tmp/photo.jpg > /tmp/photo-b64.txt
 
-# 3. Inject into HTML via Python
+# 3. Injetar no HTML via Python
 python3 -c "
 import base64
 with open('/tmp/photo.jpg', 'rb') as f:
@@ -306,7 +306,7 @@ with open('post.html', 'w') as f:
 "
 ```
 
-CSS for photo + overlay:
+CSS para foto + overlay:
 ```css
 .photo {
   position: absolute;
@@ -319,249 +319,249 @@ CSS for photo + overlay:
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.15) 0%,      /* photo visible at top */
+    rgba(0, 0, 0, 0.15) 0%,      /* foto visivel no topo */
     rgba(0, 0, 0, 0.10) 25%,
-    rgba(0, 0, 0, 0.55) 48%,      /* transition zone */
-    rgba(0, 0, 0, 0.90) 65%,      /* dark for text */
+    rgba(0, 0, 0, 0.55) 48%,      /* zona de transicao */
+    rgba(0, 0, 0, 0.90) 65%,      /* escuro para texto */
     rgba(0, 0, 0, 0.97) 80%,
     rgba(0, 0, 0, 1) 100%
   );
 }
 ```
 
-#### Good Social Media Layouts:
+#### Bons Layouts para Redes Sociais:
 
-**Feed / Square (1080x1080):**
-1. **Photo + bold text** — full-bleed photo, gradient overlay, huge headline at bottom
-2. **Split horizontal** — real photo top half, solid/gradient color bottom with big text
-3. **Circle background** — large colored circle centered, illustrations floating, bold text below
-4. **Full typography** — solid dark bg, text only, massive bold italic uppercase letters filling the space
-5. **Diagonal split** — photo with diagonal color block cutting across
+**Feed / Quadrado (1080x1080):**
+1. **Foto + texto bold** — foto full-bleed, overlay gradiente, titulo enorme embaixo
+2. **Split horizontal** — foto real metade de cima, cor solida/gradiente embaixo com texto grande
+3. **Circulo de fundo** — circulo colorido grande centralizado, ilustracoes flutuando, texto bold abaixo
+4. **Full tipografico** — fundo escuro solido, apenas texto, letras bold italic uppercase massivas preenchendo o espaco
+5. **Split diagonal** — foto com bloco de cor cortando em diagonal
 
 **Story (1080x1920):**
-1. **Photo hero** — full-bleed photo with text overlay at bottom third
-2. **Stacked impact** — big text top, photo middle, CTA text bottom
-3. **Gradient flow** — smooth gradient bg, centered text, minimal elements
+1. **Foto hero** — foto full-bleed com overlay de texto no terco inferior
+2. **Impacto empilhado** — texto grande em cima, foto no meio, texto CTA embaixo
+3. **Fluxo gradiente** — fundo gradiente suave, texto centralizado, elementos minimos
 
-**Composition rules:**
-- **Safe zone**: keep important content 60px from edges (platforms crop)
-- **Padding**: minimum 40px from all edges
-- **Breathing room**: at least 30% of the area should be empty space
-- **Logo**: small and subtle, 36-48px, top-left or top-center. Never dominant.
-- **Less is more**: if you're adding a 4th element, remove one instead
+**Regras de composicao:**
+- **Zona segura**: mantenha conteudo importante 60px das bordas (plataformas cortam)
+- **Padding**: minimo 40px de todas as bordas
+- **Respiro**: pelo menos 30% da area deve ser espaco vazio
+- **Logo**: pequeno e sutil, 36-48px, canto superior esquerdo ou centro. Nunca dominante.
+- **Menos e mais**: se voce esta adicionando um 4o elemento, remova um
 
-### 6. Visual Elements
+### 6. Elementos Visuais
 
-**Brand accents (subtle, not dominant):**
-- Thin color strips/bars at edges (5-8px) — brand signature
-- Small logo placement — never bigger than the headline
-- Color highlights on specific words — draw attention without boxes
+**Elementos de marca (sutis, nao dominantes):**
+- Faixas/barras finas de cor nas bordas (5-8px) — assinatura da marca
+- Logo pequeno — nunca maior que o titulo
+- Destaques de cor em palavras especificas — chamar atencao sem caixas
 
-**Decorative elements:**
-- Grain/noise texture overlay (opacity 0.03-0.05) for warmth
-- Gradient blobs (position: absolute, opacity low) for depth
-- CSS `::before` / `::after` for subtle decorative touches
+**Elementos decorativos:**
+- Textura de granulado/ruido como overlay (opacidade 0.03-0.05) para calor
+- Blobs de gradiente (position: absolute, opacidade baixa) para profundidade
+- CSS `::before` / `::after` para toques decorativos sutis
 
-**Icons (use sparingly):**
-- Only when illustrating a concept (floating documents, charts)
-- Inline SVG, consistent style
-- Part of the composition, not inside UI components
+**Icones (use com moderacao):**
+- Apenas quando ilustrando um conceito (documentos flutuantes, graficos)
+- SVG inline, estilo consistente
+- Parte da composicao, nao dentro de componentes de UI
 
-**What NOT to use as visual elements:**
-- Bordered cards or containers
-- Pill-shaped tags
-- Button-like shapes
-- Progress bars or steppers
-- Any element that implies interactivity
+**O que NAO usar como elementos visuais:**
+- Cards ou containers com borda
+- Tags em formato de pill
+- Formas que parecem botoes
+- Barras de progresso ou steppers
+- Qualquer elemento que implique interatividade
 
-### 7. Accessibility (CRITICAL)
+### 7. Acessibilidade (CRITICO)
 
-Even in static images, accessibility matters for reach and legibility.
+Mesmo em imagens estaticas, acessibilidade importa para alcance e legibilidade.
 
-- **Minimum contrast**: 4.5:1 for normal text, 3:1 for large text (48px+)
-- **Minimum text size**: 20px for feed, 24px for stories
-- **Test gradients**: check contrast at both lightest AND darkest points
-- **Solution for gradients**: add semi-transparent overlay behind text
-- **Don't rely on color alone**: use icon + text to convey meaning
-- **Avoid**: red + green together (colorblindness), light blue on white, yellow on white
+- **Contraste minimo**: 4.5:1 para texto normal, 3:1 para texto grande (48px+)
+- **Tamanho minimo de texto**: 20px para feed, 24px para stories
+- **Teste gradientes**: verifique contraste nos pontos mais claros E mais escuros
+- **Solucao para gradientes**: adicione overlay semi-transparente atras do texto
+- **Nao dependa apenas de cor**: use icone + texto para transmitir significado
+- **Evite**: vermelho + verde juntos (daltonismo), azul claro sobre branco, amarelo sobre branco
 
-### 8. Design Intelligence Search
+### 8. Busca de Inteligencia de Design
 
-This skill includes an integrated searchable database. **Always use these searches** before generating images to get context-specific recommendations.
+Esta skill inclui um banco de dados pesquisavel integrado. **Sempre use essas buscas** antes de gerar imagens para obter recomendacoes especificas ao contexto.
 
-All scripts are relative to this skill's directory. Replace `<skill-path>` with the actual path (e.g., `.claude/skills/html-image-gen`).
+Todos os scripts sao relativos ao diretorio desta skill. Substitua `<skill-path>` pelo caminho real (ex: `.claude/skills/html-image-gen`).
 
-#### Generate a Complete Design System (RECOMMENDED FIRST STEP)
+#### Gerar um Design System Completo (PRIMEIRO PASSO RECOMENDADO)
 
-For any new image request, run this first to get style, colors, typography, and effects all at once:
-
-```bash
-python3 <skill-path>/scripts/search.py "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
-```
-
-Example:
-```bash
-python3 <skill-path>/scripts/search.py "fitness gym modern bold" --design-system -p "PowerGym"
-```
-
-#### Domain-Specific Searches
-
-Use these for deep-diving into a specific dimension:
+Para qualquer novo pedido de imagem, execute isto primeiro para obter estilo, cores, tipografia e efeitos de uma vez:
 
 ```bash
-# Color palettes by industry (161 palettes)
-python3 <skill-path>/scripts/search.py "<keyword>" --domain color -n 5
-
-# Font pairings by mood (57 pairings)
-python3 <skill-path>/scripts/search.py "<keyword>" --domain typography -n 5
-
-# Visual styles (50+ styles)
-python3 <skill-path>/scripts/search.py "<keyword>" --domain style -n 5
-
-# Product type patterns (161 types)
-python3 <skill-path>/scripts/search.py "<keyword>" --domain product -n 5
-
-# UX best practices (99 guidelines)
-python3 <skill-path>/scripts/search.py "<keyword>" --domain ux -n 5
-
-# Landing page patterns
-python3 <skill-path>/scripts/search.py "<keyword>" --domain landing -n 5
-
-# Chart/data visualization types
-python3 <skill-path>/scripts/search.py "<keyword>" --domain chart -n 5
+python3 <skill-path>/scripts/search.py "<tipo_produto> <industria> <palavras-chave>" --design-system [-p "Nome do Projeto"]
 ```
 
-#### When to Search
+Exemplo:
+```bash
+python3 <skill-path>/scripts/search.py "fitness gym moderno bold" --design-system -p "PowerGym"
+```
 
-| Situation | What to Run |
-|-----------|-------------|
-| New image, unclear style | `--design-system` with product context |
-| User asks "make it look like X" | `--domain style "<X keywords>"` |
-| Need brand-appropriate colors | `--domain color "<industry>"` |
-| Choosing fonts | `--domain typography "<mood>"` |
-| Infographic / data image | `--domain chart "<chart type>"` |
+#### Buscas por Dominio Especifico
 
-The search results include CSS snippets, Google Fonts URLs, hex codes, and anti-patterns to avoid — use them directly in the HTML you generate.
+Use para se aprofundar em uma dimensao especifica:
+
+```bash
+# Paletas de cores por industria (161 paletas)
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain color -n 5
+
+# Combinacoes tipograficas por humor (57 combinacoes)
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain typography -n 5
+
+# Estilos visuais (50+ estilos)
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain style -n 5
+
+# Padroes por tipo de produto (161 tipos)
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain product -n 5
+
+# Melhores praticas de UX (99 diretrizes)
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain ux -n 5
+
+# Padroes de landing page
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain landing -n 5
+
+# Tipos de graficos/visualizacao de dados
+python3 <skill-path>/scripts/search.py "<palavra-chave>" --domain chart -n 5
+```
+
+#### Quando Buscar
+
+| Situacao | O que Executar |
+|----------|----------------|
+| Nova imagem, estilo incerto | `--design-system` com contexto do produto |
+| Usuario pede "faca parecer com X" | `--domain style "<palavras-chave de X>"` |
+| Precisa de cores adequadas a marca | `--domain color "<industria>"` |
+| Escolhendo fontes | `--domain typography "<humor>"` |
+| Infografico / imagem de dados | `--domain chart "<tipo de grafico>"` |
+
+Os resultados incluem snippets CSS, URLs do Google Fonts, codigos hex e anti-patterns a evitar — use-os diretamente no HTML que voce gerar.
 
 ---
 
-## Workflow
+## Fluxo de Trabalho
 
-### Step 1: Consult Design Learning
+### Passo 1: Consultar Design Learning
 
-**Before anything else**, read `data/design-learning.md` (relative to this skill). This file contains:
-- Visual concepts by theme (word → visual element mapping)
-- Anti-patterns learned from past feedback
-- Patterns that worked well
-- The creative process to follow
+**Antes de qualquer coisa**, leia `data/design-learning.md` (relativo a esta skill). Este arquivo contem:
+- Conceitos visuais por tema (mapeamento palavra → elemento visual)
+- Anti-patterns aprendidos de feedbacks anteriores
+- Padroes que funcionaram bem
+- O processo criativo a seguir
 
-Answer these 4 questions before designing:
-1. What is the core message? (1 sentence)
-2. What emotion/reaction should it provoke? (fear, curiosity, trust, urgency)
-3. What is the visual metaphor? (keyword → concrete visual element)
-4. Does the visual reinforce the text? (cover the text — can you guess the topic from visuals alone?)
+Responda estas 4 perguntas antes de desenhar:
+1. Qual e a mensagem central? (1 frase)
+2. Qual emocao/reacao deve provocar? (medo, curiosidade, confianca, urgencia)
+3. Qual e a metafora visual? (palavra-chave → elemento visual concreto)
+4. O visual reforca o texto? (tampe o texto — da pra adivinhar o tema so pelos visuais?)
 
-If you can't answer question 3, search for references first. Do NOT start designing.
+Se nao conseguir responder a pergunta 3, busque referencias primeiro. NAO comece a desenhar.
 
-### Step 2: Understand the Request
+### Passo 2: Entender o Pedido
 
-Extract from the user's message:
-- **What**: type of image (post, banner, thumbnail, OG image, etc.)
-- **Format**: dimensions or platform (Instagram feed, Twitter, etc.)
-- **Content**: text, data, or information to include
-- **Style**: any style preferences mentioned
-- **Industry/context**: for design system search
+Extraia da mensagem do usuario:
+- **O que**: tipo de imagem (post, banner, thumbnail, imagem OG, etc.)
+- **Formato**: dimensoes ou plataforma (Instagram feed, Twitter, etc.)
+- **Conteudo**: texto, dados ou informacao a incluir
+- **Estilo**: preferencias de estilo mencionadas
+- **Industria/contexto**: para busca de design system
 
-### Step 3: Search for Design Recommendations
+### Passo 3: Buscar Recomendacoes de Design
 
-**Always run the design system search** before generating HTML:
+**Sempre execute a busca de design system** antes de gerar HTML:
 
 ```bash
-python3 <skill-path>/scripts/search.py "<product_type> <industry> <style_keywords>" --design-system
+python3 <skill-path>/scripts/search.py "<tipo_produto> <industria> <palavras_estilo>" --design-system
 ```
 
-This returns a complete recommendation: style, colors (hex codes), typography (with Google Fonts URL), effects, and anti-patterns. Use these directly.
+Isto retorna uma recomendacao completa: estilo, cores (codigos hex), tipografia (com URL do Google Fonts), efeitos e anti-patterns. Use diretamente.
 
-If the user has specific needs (e.g., "I want a dark theme"), supplement with domain searches:
+Se o usuario tiver necessidades especificas (ex: "quero tema escuro"), complemente com buscas por dominio:
 
 ```bash
 python3 <skill-path>/scripts/search.py "dark mode minimal" --domain style -n 3
 ```
 
-### Step 4: Check for Brand
+### Passo 4: Verificar Marca
 
-Look for `brand.json` in the project root. If it exists, **brand values override** the search recommendations for colors, fonts, and logo. The search results still guide layout, style, and effects.
+Procure `brand.json` na raiz do projeto. Se existir, **valores da marca sobrescrevem** as recomendacoes da busca para cores, fontes e logo. Os resultados da busca ainda guiam layout, estilo e efeitos.
 
-If no `brand.json` exists, use the search results directly.
+Se nao existir `brand.json`, use os resultados da busca diretamente.
 
-### Step 5: Find a Background Photo
+### Passo 5: Encontrar Foto de Fundo
 
-For social media posts, search Unsplash for a relevant photo:
+Para posts de redes sociais, busque no Unsplash uma foto relevante:
 
-1. Search for a photo that fits the topic (e.g., "container port" for comex, "team meeting" for corporate)
-2. Download: `curl -sL "https://images.unsplash.com/photo-{ID}?w=1100&q=80" -o /tmp/photo.jpg`
-3. Verify it downloaded: `file /tmp/photo.jpg` (should say JPEG)
-4. Convert to base64 for embedding
+1. Busque uma foto que combine com o tema (ex: "container porto" para comex, "reuniao equipe" para corporativo)
+2. Baixe: `curl -sL "https://images.unsplash.com/photo-{ID}?w=1100&q=80" -o /tmp/photo.jpg`
+3. Verifique se baixou: `file /tmp/photo.jpg` (deve dizer JPEG)
+4. Converta para base64 para embutir
 
-If no photo fits (abstract/typographic posts), skip this step and use solid colors or gradients.
+Se nenhuma foto se encaixar (posts abstratos/tipograficos), pule este passo e use cores solidas ou gradientes.
 
-### Step 6: Generate HTML
+### Passo 6: Gerar HTML
 
-Write a self-contained HTML file following:
-1. **Section 5 (Social Media Design)** — this is the most important reference
-2. The design system recommendations from Step 2
-3. The design guidelines in this document (hierarchy, spacing, contrast)
-4. Brand identity from Step 3 (if available)
+Escreva um arquivo HTML auto-contido seguindo:
+1. **Secao 5 (Design para Redes Sociais)** — esta e a referencia mais importante
+2. As recomendacoes de design system do Passo 2
+3. As diretrizes de design neste documento (hierarquia, espacamento, contraste)
+4. Identidade visual do Passo 3 (se disponivel)
 
-Key considerations:
-- Think like a graphic designer, not a web developer
-- Photo background + gradient overlay + bold text = proven formula
-- Use the correct dimensions for the chosen format
-- Apply the type scale from the guidelines
-- Ensure contrast ratios are met (4.5:1 minimum)
-- Use Google Fonts via `@import` (URL from search results)
-- Embed photos as base64 data URIs
-- NO UI components (cards, buttons, pills, timelines)
+Consideracoes importantes:
+- Pense como designer grafico, nao como desenvolvedor web
+- Foto de fundo + overlay gradiente + texto bold = formula comprovada
+- Use as dimensoes corretas para o formato escolhido
+- Aplique a escala tipografica das diretrizes
+- Garanta que as taxas de contraste sejam atendidas (4.5:1 minimo)
+- Use Google Fonts via `@import` (URL dos resultados da busca)
+- Embutir fotos como data URIs base64
+- SEM componentes de UI (cards, botoes, pills, timelines)
 
-### Step 7: Render to PNG
+### Passo 7: Renderizar para PNG
 
-Run the render script:
+Execute o script de renderizacao:
 
 ```bash
-node <skill-path>/scripts/render.js <html-file> <output.png> --format <format>
+node <skill-path>/scripts/render.js <arquivo-html> <output.png> --format <formato>
 ```
 
-### Step 8: Show and Iterate
+### Passo 8: Mostrar e Iterar
 
-Show the generated image to the user. Ask if they want adjustments. Common adjustments:
-- "make it bigger/smaller" — adjust font sizes
-- "darker/lighter" — adjust background/text colors
-- "more space" — increase padding
-- "change the color" — run `--domain color` with new keywords
-- "different style" — run `--domain style` with new keywords
-- "add more text" — but warn if it exceeds recommended word count
+Mostre a imagem gerada ao usuario. Pergunte se querem ajustes. Ajustes comuns:
+- "maior/menor" — ajustar tamanhos de fonte
+- "mais escuro/claro" — ajustar cores de fundo/texto
+- "mais espaco" — aumentar padding
+- "mudar a cor" — executar `--domain color` com novas palavras-chave
+- "estilo diferente" — executar `--domain style` com novas palavras-chave
+- "adicionar mais texto" — mas avise se exceder contagem de palavras recomendada
 
-## Pre-Delivery Checklist
+## Checklist Pre-Entrega
 
-Before delivering any image:
+Antes de entregar qualquer imagem:
 
-**Design quality:**
-- [ ] Looks like a Canva/graphic design post, NOT a website screenshot
-- [ ] Uses real photography as background (when applicable) with proper gradient overlay
-- [ ] Text is the hero — bold, large, filling the space
-- [ ] No UI components: no bordered cards, no button-like pills, no stepper/timeline components
-- [ ] Maximum 3-4 elements total (photo + text + logo + one accent)
+**Qualidade de design:**
+- [ ] Parece um post de Canva/design grafico, NAO um screenshot de site
+- [ ] Usa fotografia real como fundo (quando aplicavel) com overlay gradiente adequado
+- [ ] Texto e o heroi — bold, grande, preenchendo o espaco
+- [ ] Sem componentes de UI: sem cards com borda, sem pills que parecem botoes, sem componentes stepper/timeline
+- [ ] Maximo 3-4 elementos total (foto + texto + logo + um destaque)
 
-**Typography:**
-- [ ] Clear hierarchy: heading > subheading > body > caption
-- [ ] Maximum 2 fonts, maximum 4 colors
-- [ ] Heading weight bold (700+), 64-82px for feed
-- [ ] Minimum text size 20px (feed) / 24px (story)
+**Tipografia:**
+- [ ] Hierarquia clara: titulo > subtitulo > corpo > legenda
+- [ ] Maximo 2 fontes, maximo 4 cores
+- [ ] Peso do titulo bold (700+), 64-82px para feed
+- [ ] Tamanho minimo de texto 20px (feed) / 24px (story)
 
-**Technical:**
-- [ ] Text contrast >= 4.5:1 against background
-- [ ] Padding >= 40px from edges, 60px safe zone respected
-- [ ] At least 30% empty space / breathing room
-- [ ] Style consistent across the entire image
-- [ ] Brand colors/fonts respected (if brand.json exists)
-- [ ] Photo loaded and embedded as base64 (not external URL)
+**Tecnico:**
+- [ ] Contraste do texto >= 4.5:1 contra o fundo
+- [ ] Padding >= 40px das bordas, zona segura de 60px respeitada
+- [ ] Pelo menos 30% de espaco vazio / respiro
+- [ ] Estilo consistente em toda a imagem
+- [ ] Cores/fontes da marca respeitadas (se brand.json existir)
+- [ ] Foto carregada e embutida como base64 (nao URL externa)

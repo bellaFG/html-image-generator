@@ -1,32 +1,32 @@
-# HTML Image Generator Skill
+# Skill de Geracao de Imagens HTML
 
-This repository contains a Claude Code skill for generating production-quality images from HTML/CSS.
+Este repositorio contem uma skill do Claude Code para gerar imagens de alta qualidade a partir de HTML/CSS.
 
-## Installation
+## Instalacao
 
-Copy the `skill/` folder into your project's `.claude/skills/html-image-gen/` directory:
+Copie a pasta `skill/` para o diretorio `.claude/skills/html-image-gen/` do seu projeto:
 
 ```bash
-cp -r skill/ /path/to/your-project/.claude/skills/html-image-gen/
+cp -r skill/ /caminho/do/seu-projeto/.claude/skills/html-image-gen/
 ```
 
-Then install Puppeteer in your project:
+Depois instale o Puppeteer no seu projeto:
 
 ```bash
 npm install puppeteer
 ```
 
-## Usage
+## Uso
 
-Once installed, Claude Code will automatically use this skill when you ask it to generate images, social media posts, banners, thumbnails, or any visual asset.
+Uma vez instalada, o Claude Code usara automaticamente esta skill quando voce pedir para gerar imagens, posts de redes sociais, banners, thumbnails ou qualquer recurso visual.
 
-### Quick examples
+### Exemplos rapidos
 
-- "Generate an Instagram post announcing our new feature"
-- "Create an OG image for this blog post"
-- "Make a YouTube thumbnail with the title 'Top 10 Tips'"
-- "Design a banner for our Black Friday sale"
+- "Gere um post de Instagram anunciando nossa nova feature"
+- "Crie uma imagem OG para este blog post"
+- "Faca uma thumbnail do YouTube com o titulo 'Top 10 Dicas'"
+- "Design um banner para nossa Black Friday"
 
-### Brand support
+### Suporte a marca
 
-Create a `brand.json` in your project root to have all images follow your brand identity. See the SKILL.md for the expected format.
+Crie um `brand.json` na raiz do seu projeto para que todas as imagens sigam a identidade visual da sua marca. Veja o SKILL.md para o formato esperado.

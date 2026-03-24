@@ -1,48 +1,48 @@
-# HTML Image Generator — Claude Code Skill
+# Gerador de Imagens HTML — Skill do Claude Code
 
-A Claude Code skill that generates production-quality PNG images from HTML/CSS. Works with any project — just install and ask Claude to create images.
+Uma skill do Claude Code que gera imagens PNG de alta qualidade a partir de HTML/CSS. Funciona com qualquer projeto — basta instalar e pedir ao Claude para criar imagens.
 
-Supports Instagram posts, stories, banners, OG images, YouTube thumbnails, and any visual format that can be expressed as HTML.
+Suporta posts de Instagram, stories, banners, imagens OG, thumbnails do YouTube e qualquer formato visual que possa ser expresso como HTML.
 
-## Features
+## Funcionalidades
 
-- **10 preset formats**: feed, story, carousel, portrait, banner, twitter-post, og-image, youtube-thumb, square, landscape
-- **2x retina rendering** via Puppeteer headless browser
-- **Integrated design intelligence** (powered by UI/UX Pro Max): searchable database with 161 color palettes, 57 font pairings, 50+ visual styles, 161 product types, and 99 UX guidelines
-- **Design system generator**: auto-recommends style, colors, typography, and effects based on product type and industry
-- **Brand support**: optional `brand.json` for consistent brand identity across all images
-- **Zero config**: works out of the box with sensible defaults, no configuration needed
+- **10 formatos pre-definidos**: feed, story, carousel, portrait, banner, twitter-post, og-image, youtube-thumb, square, landscape
+- **Renderizacao retina 2x** via Puppeteer headless browser
+- **Inteligencia de design integrada** (powered by UI/UX Pro Max): banco de dados pesquisavel com 161 paletas de cores, 57 combinacoes tipograficas, 50+ estilos visuais, 161 tipos de produto e 99 diretrizes de UX
+- **Gerador de design system**: recomenda automaticamente estilo, cores, tipografia e efeitos baseado no tipo de produto e industria
+- **Suporte a marca**: `brand.json` opcional para identidade visual consistente em todas as imagens
+- **Zero configuracao**: funciona direto da caixa com padroes sensiveis, sem configuracao necessaria
 
-## Installation
+## Instalacao
 
-### 1. Copy the skill into your project
+### 1. Copie a skill para o seu projeto
 
 ```bash
-# From this repo
-cp -r skill/ /path/to/your-project/.claude/skills/html-image-gen/
+# A partir deste repo
+cp -r skill/ /caminho/do/seu-projeto/.claude/skills/html-image-gen/
 ```
 
-Or clone directly:
+Ou clone diretamente:
 
 ```bash
-cd /path/to/your-project
+cd /caminho/do/seu-projeto
 mkdir -p .claude/skills
-git clone https://github.com/YOUR_USER/html-image-gen-skill .claude/skills/html-image-gen
+git clone https://github.com/SEU_USER/html-image-gen-skill .claude/skills/html-image-gen
 ```
 
-### 2. Install Puppeteer
+### 2. Instale o Puppeteer
 
 ```bash
-cd /path/to/your-project
+cd /caminho/do/seu-projeto
 npm install puppeteer
 ```
 
-### 3. (Optional) Create a brand.json
+### 3. (Opcional) Crie um brand.json
 
 ```json
 {
   "company": {
-    "name": "Your Company",
+    "name": "Sua Empresa",
     "logo": "assets/logo.png"
   },
   "colors": {
@@ -63,75 +63,75 @@ npm install puppeteer
 }
 ```
 
-### 4. Start using
+### 4. Comece a usar
 
-Open Claude Code in your project and ask:
+Abra o Claude Code no seu projeto e peca:
 
-- "Generate an Instagram post about our new product launch"
-- "Create an OG image for the blog post at /content/my-post.md"
-- "Make a YouTube thumbnail with dark theme"
-- "Design a LinkedIn banner for our company page"
+- "Gere um post de Instagram sobre o lancamento do nosso novo produto"
+- "Crie uma imagem OG para o blog post em /content/meu-post.md"
+- "Faca uma thumbnail do YouTube com tema escuro"
+- "Design um banner do LinkedIn para a pagina da empresa"
 
-## How It Works
+## Como Funciona
 
-1. Claude reads the SKILL.md and understands your request
-2. It generates a self-contained HTML file with inline CSS and Google Fonts
-3. The HTML is rendered to PNG via Puppeteer at 2x resolution
-4. Claude shows you the image and iterates based on your feedback
+1. O Claude le o SKILL.md e entende seu pedido
+2. Ele gera um arquivo HTML auto-contido com CSS inline e Google Fonts
+3. O HTML e renderizado em PNG via Puppeteer em resolucao 2x
+4. O Claude mostra a imagem e itera com base no seu feedback
 
-## Standalone Render Script
+## Script de Renderizacao Standalone
 
-The render script can also be used directly:
+O script de renderizacao tambem pode ser usado diretamente:
 
 ```bash
-# Basic usage
+# Uso basico
 node .claude/skills/html-image-gen/scripts/render.js input.html output.png
 
-# With format preset
+# Com formato pre-definido
 node .claude/skills/html-image-gen/scripts/render.js input.html output.png --format story
 
-# Custom dimensions
+# Dimensoes customizadas
 node .claude/skills/html-image-gen/scripts/render.js input.html output.png --width 1200 --height 630
 
-# From stdin
+# Via stdin
 cat template.html | node .claude/skills/html-image-gen/scripts/render.js --stdin -o output.png
 ```
 
-## Available Formats
+## Formatos Disponiveis
 
-| Format          | Dimensions   | Use Case                          |
+| Formato          | Dimensoes    | Uso                               |
 |-----------------|--------------|-----------------------------------|
-| `feed`          | 1080 x 1080  | Instagram/Facebook square posts   |
-| `story`         | 1080 x 1920  | Instagram/Facebook stories, Reels |
-| `carousel`      | 1080 x 1080  | Instagram carousel slides         |
-| `portrait`      | 1080 x 1350  | Instagram portrait posts          |
-| `banner`        | 1200 x 628   | Facebook/LinkedIn banners         |
-| `twitter-post`  | 1200 x 675   | Twitter/X posts                   |
-| `og-image`      | 1200 x 630   | Open Graph preview images         |
-| `youtube-thumb`  | 1280 x 720  | YouTube thumbnails                |
-| `square`        | 1080 x 1080  | General square format             |
-| `landscape`     | 1920 x 1080  | Landscape/presentation format     |
+| `feed`          | 1080 x 1080  | Posts quadrados Instagram/Facebook |
+| `story`         | 1080 x 1920  | Stories/Reels Instagram/Facebook  |
+| `carousel`      | 1080 x 1080  | Slides de carrossel Instagram     |
+| `portrait`      | 1080 x 1350  | Posts retrato Instagram           |
+| `banner`        | 1200 x 628   | Banners Facebook/LinkedIn         |
+| `twitter-post`  | 1200 x 675   | Posts Twitter/X                   |
+| `og-image`      | 1200 x 630   | Imagens Open Graph                |
+| `youtube-thumb`  | 1280 x 720  | Thumbnails YouTube                |
+| `square`        | 1080 x 1080  | Formato quadrado geral            |
+| `landscape`     | 1920 x 1080  | Formato paisagem/apresentacao     |
 
-## Design Intelligence
+## Inteligencia de Design
 
-The skill includes a complete searchable design database:
+A skill inclui um banco de dados de design completo e pesquisavel:
 
-- **161 color palettes** by industry and product type
-- **57 font pairings** with Google Fonts URLs and mood keywords
-- **50+ visual styles** with CSS snippets (glassmorphism, neubrutalism, aurora, etc.)
-- **161 product type patterns** with layout and CTA recommendations
-- **99 UX guidelines** covering accessibility, touch targets, animation, forms
-- **Design system generator** that combines all of the above into a single recommendation
+- **161 paletas de cores** por industria e tipo de produto
+- **57 combinacoes tipograficas** com URLs do Google Fonts e palavras-chave de humor
+- **50+ estilos visuais** com snippets CSS (glassmorphism, neubrutalism, aurora, etc.)
+- **161 padroes de tipo de produto** com recomendacoes de layout e CTA
+- **99 diretrizes de UX** cobrindo acessibilidade, touch targets, animacao, formularios
+- **Gerador de design system** que combina tudo acima em uma unica recomendacao
 
-Plus built-in guidelines for visual hierarchy, type scales, spacing, composition, and accessibility.
+Alem de diretrizes integradas para hierarquia visual, escalas tipograficas, espacamento, composicao e acessibilidade.
 
-### Prerequisites
+### Pre-requisitos
 
-- Node.js (for Puppeteer rendering)
-- Python 3 (for design intelligence searches — no external dependencies)
+- Node.js (para renderizacao via Puppeteer)
+- Python 3 (para buscas de inteligencia de design — sem dependencias externas)
 
-See [skill/SKILL.md](skill/SKILL.md) for the full reference.
+Veja [skill/SKILL.md](skill/SKILL.md) para a referencia completa.
 
-## License
+## Licenca
 
 MIT
